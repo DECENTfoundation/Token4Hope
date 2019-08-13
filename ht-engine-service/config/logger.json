@@ -1,0 +1,27 @@
+{
+    "ops": {
+        "interval": 10000
+    },
+    "reporters": {
+        "consoleReporter": [
+            {
+                "module": "good-squeeze",
+                "name": "Squeeze",
+                "args": [
+                    {
+                        "log": "*",
+                        "response": {
+                            "include": "*",
+                            "exclude": "healthcheck"
+                        },
+                        "error": "*"
+                    }
+                ]
+            },
+            {
+                "module": "good-console"
+            },
+            "stdout"
+        ]
+    }
+}

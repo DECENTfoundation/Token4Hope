@@ -1,0 +1,12 @@
+@import "../../../../assets/styles/variables";
+
+.info-icon {
+    &__svg {
+        fill: $disabled;
+        transition: fill 200ms ease-in-out;
+
+        &:hover {
+            fill: #000;
+        }
+    }
+}

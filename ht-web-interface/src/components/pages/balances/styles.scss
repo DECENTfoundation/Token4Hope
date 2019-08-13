@@ -1,0 +1,45 @@
+@import "../../../../assets/styles/variables";
+
+.balances {
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 40px 5%;
+
+  &__wrapper {
+    align-self: center;
+  }
+
+  &__table {
+    a {
+      color: $primary;
+    }
+    &__title {
+      align-self: flex-start;
+      margin: 10px 10px 20px;
+    }
+  }
+
+  &__export {
+    &__title {
+      white-space: nowrap;
+    }
+  }
+
+  &__loader {
+    align-self: center;
+    height: 150px;
+    display: flex;
+  }
+
+  @media screen and (max-width: $tablet-resolution) {
+    &__info {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: $mobile-resolution) {
+    &__info {
+      padding: 0 10px;
+    }
+  }
+}
+

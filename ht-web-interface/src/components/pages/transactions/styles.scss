@@ -1,0 +1,168 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.transactions {
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 40px 5%;
+
+    &__wrapper {
+        align-self: center;
+    }
+
+    &__table {
+        a {
+            color: $primary;
+        }
+
+        &__title {
+            align-self: flex-start;
+            margin: 10px 10px 20px;
+        }
+
+        &__cell {
+
+            &--in {
+                color: $secondary;
+
+                &::before {
+                    content: "+ ";
+                }
+            }
+
+            &--out {
+                color: $highlight;
+
+                &::before {
+                    content: "- ";
+                }
+            }
+        }
+    }
+
+    &__export {
+        &__title {
+            white-space: nowrap;
+        }
+    }
+
+    &__loader {
+        align-self: center;
+        height: 150px;
+        display: flex;
+    }
+
+    @media screen and (max-width: $tablet-resolution) {
+        &__info {
+            flex-direction: column;
+        }
+    }
+    @media screen and (max-width: $mobile-resolution) {
+        &__info {
+            padding: 0 10px;
+        }
+    }
+}
+
+.DateRangePicker {
+    margin: 0 20px 0;
+}
+
+.DateRangePickerInput {
+    &__withBorder {
+        display: flex;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid $border;
+    }
+}
+
+.DateInput {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 110px;
+
+    &_input {
+        @include font(16px, 24px, $fontface-arial, 0.5px);
+        padding: 8px;
+        border: none;
+    }
+}
+
+.CalendarDay {
+    &__default {
+        border: none;
+
+        &:hover {
+            border: none;
+            background: #eaecef;
+            border-radius: 50%;
+        }
+    }
+
+    &__selected {
+        background-color: #bc2a65;
+        color: white;
+        outline: none;
+        border: none;
+
+        &_start {
+            border-radius: 50% 0 0 50%;
+        }
+
+        &_end {
+            border-radius: 0 50% 50% 0;
+
+            &:hover {
+                border-radius: 0 50% 50% 0 !important;
+            }
+        }
+
+        &_start#{&}_end {
+            border-radius: 50%;
+
+            &:hover {
+                border-radius: 50% !important;
+            }
+        }
+
+        &:hover {
+            border-radius: 50% 0 0 50%;
+            border: none;
+            background-color: #bc2a65;
+            color: white;
+        }
+
+        &_span {
+            background-color: #eec5cf;
+            color: #c1395b;
+            border: none;
+
+            &:hover {
+                border-radius: 0;
+                background-color: #eec5cf;
+                color: #c1395b;
+                border: none;
+            }
+        }
+
+    }
+}
+
+.CalendarDay__hovered_span,
+.CalendarDay__hovered_span:hover {
+    background: #eec5cf;
+    border-radius: 0;
+}
+
+.DayPickerNavigation_button__verticalDefault {
+    width: 46%;
+}
+
+
+@media screen and (max-width: $mobile-resolution) {
+    .DateRangePicker {
+        margin: 0 0 15px 0;
+    }
+}

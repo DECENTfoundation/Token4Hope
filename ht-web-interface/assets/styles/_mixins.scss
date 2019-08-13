@@ -1,0 +1,39 @@
+@import "./variables";
+
+@mixin font($size, $line-height, $font-family: inherit, $ls: initial) {
+    font-size: $size;
+    line-height: $line-height;
+    min-height: $line-height;
+    @if $font-family {
+        font-family: $font-family;
+    }
+    @if $ls {
+        letter-spacing: $ls;
+    }
+}
+
+@mixin responsiveFont($size, $line-height, $res) {
+    @media screen and (max-width: $res) {
+        font-size: $size;
+        line-height: $line-height;
+        min-height: $line-height;
+    }
+}
+
+@mixin responsiveFrame() {
+    max-width: 1400px;
+    align-self: center;
+    justify-self: center;
+
+    @media screen and (min-width: 2000px) {
+        max-width: 1700px;
+    }
+
+    @media screen and (max-width: $tablet-resolution) {
+        max-width: 100%;
+    }
+
+    @media screen and (max-width: $mobile-resolution) {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,43 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.container {
+    position: relative;
+    width: 607px;
+    max-width: 100%;
+    top: -30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 50px 35px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+    box-sizing: border-box;
+    justify-content: center;
+    @include responsiveFrame();
+
+    &__wrapper {
+        width: 100%;
+        align-self: center;
+    }
+    @media screen and (max-width: $mobile-resolution) {
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        top: 0;
+    }
+
+    &--full-width {
+        width: 96%;
+
+        @media screen and (max-width: $mobile-resolution) {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    &--offset {
+        top: -70px;
+    }
+}

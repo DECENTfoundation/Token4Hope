@@ -1,0 +1,15 @@
+export enum RestMethod {
+    Index = "index",
+    Show = "show",
+    Create = "create",
+    Update = "update",
+    Edit = "edit",
+    Delete = "delete",
+    Upload = "upload",
+    Signin = "signin",
+    Signout = "signout",
+    Signup = "signup",
+    Confirm = "confirm",
+    ConfirmChange = "confirmChange",
+    Search = "search",
+}

@@ -1,0 +1,1066 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Humanity Token API",
+    "version": "1.0.0",
+    "title": "Humanity Token API",
+    "contact": {
+      "name": "Mario Kapusta",
+      "email": "mario@decent.ch"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/DECENT/ht/1.0.0",
+  "tags": [
+    {
+      "name": "public"
+    },
+    {
+      "name": "charity"
+    },
+    {
+      "name": "store"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/vnd.decent.ht.v1+json"
+  ],
+  "produces": [
+    "application/vnd.decent.ht.v1+json"
+  ],
+  "paths": {
+    "/healthcheck": {
+      "get": {
+        "tags": [
+          "healthcheck"
+        ],
+        "summary": "Check if site is available.",
+        "description": "Check if site is available.",
+        "operationId": "MonitoringController:healthcheck",
+        "consumes": [
+          "*/*",
+          "text/html",
+          "text/plain"
+        ],
+        "produces": [
+          "*/*",
+          "text/html",
+          "text/plain"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Available",
+            "schema": {
+              "$ref": "#/definitions/EmptyData"
+            }
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200])); }"
+        }
+      }
+    },
+    "/user/signin": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "User's account signin",
+        "description": "User's account signin.",
+        "operationId": "UsersController:signin",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User form schema.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SigninUserPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AuthDto"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          },
+          "415": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          },
+          "422": {
+            "description": "Unprocessable Entity error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          }
+        },
+        "security": [],
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 400, 406, 415, 422])); }"
+        }
+      }
+    },
+    "/user/signout": {
+      "delete": {
+        "tags": [
+          "store",
+          "charity"
+        ],
+        "summary": "User's account signout",
+        "description": "User's account signout.",
+        "operationId": "UsersController:signout",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Success: No content",
+            "schema": {
+              "$ref": "#/definitions/EmptyData"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "self-user"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([204, 401, 406])); }"
+        }
+      }
+    },
+    "/user/balanceByCard/{cardNumber}": {
+      "get": {
+        "tags": [
+          "public"
+        ],
+        "summary": "Get user balance.",
+        "description": "Get user balance.",
+        "operationId": "BalanceController:balanceByCard",
+        "parameters": [
+          {
+            "name": "cardNumber",
+            "in": "path",
+            "description": "Family card name.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Balance for account.",
+            "schema": {
+              "$ref": "#/definitions/BalanceDto"
+            }
+          },
+          "404": {
+            "description": "User not found."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [],
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 404, 406])); }"
+        }
+      }
+    },
+    "/user/balanceByChainName/{chainName}": {
+      "get": {
+        "tags": [
+          "public"
+        ],
+        "summary": "Get user balance by blockchain account name.",
+        "description": "Get user balance by blockchain account name",
+        "operationId": "BalanceController:balanceByChainName",
+        "parameters": [
+          {
+            "name": "chainName",
+            "in": "path",
+            "description": "Blockchain account name.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Balance for account.",
+            "schema": {
+              "$ref": "#/definitions/BalanceDto"
+            }
+          },
+          "404": {
+            "description": "User not found."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [],
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 404, 406])); }"
+        }
+      }
+    },
+    "/user/me": {
+      "get": {
+        "tags": [
+          "charity",
+          "store"
+        ],
+        "summary": "Get user personal data.",
+        "description": "Get user personal data.",
+        "operationId": "UsersController:me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User personal data.",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "self-user"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 401, 406])); }"
+        }
+      },
+      "patch": {
+        "tags": [
+          "charity",
+          "store"
+        ],
+        "summary": "Edit user.",
+        "description": "Edit user.",
+        "operationId": "UsersController:edit",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User Payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserEditPayload"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content",
+            "schema": {
+              "$ref": "#/definitions/EmptyData"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          },
+          "422": {
+            "description": "Incorrect old password or other entity problem."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "self-user"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 400, 401, 403, 406, 422])); }"
+        }
+      }
+    },
+    "/accounts": {
+      "get": {
+        "tags": [
+          "charity"
+        ],
+        "summary": "Get all user and family accounts.",
+        "description": "Get all user and family accounts.",
+        "operationId": "ChainAccountController:index",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of User and Family accounts.",
+            "schema": {
+              "$ref": "#/definitions/ChainAccountListDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "charity"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 401, 403, 406])); }"
+        }
+      }
+    },
+    "/accounts/{chainAccountName}/transactions": {
+      "get": {
+        "tags": [
+          "charity",
+          "store"
+        ],
+        "summary": "Get all transactions for blockchain account.",
+        "description": "Get all transactions for blockchain account.",
+        "operationId": "TransactionController:index",
+        "parameters": [
+          {
+            "name": "chainAccountName",
+            "in": "path",
+            "description": "DCore blockchain account name.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name" : "cursor",
+            "in" : "query",
+            "description" : "Paginating cursor",
+            "required" : false,
+            "type" : "string"
+          },
+          {
+            "name" : "from",
+            "in" : "query",
+            "description" : "From time in ISO format",
+            "required" : false,
+            "type" : "string"
+          },
+          {
+            "name" : "to",
+            "in" : "query",
+            "description" : "To time in ISO format",
+            "required" : false,
+            "type" : "string"
+          },
+          {
+            "name" : "limit",
+            "in" : "query",
+            "description" : "Limit number of results",
+            "required" : false,
+            "type" : "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of blockchain transactions.",
+            "schema": {
+              "$ref": "#/definitions/TransactionListDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "charity",
+              "store"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 401, 403, 404, 406])); }"
+        }
+      }
+    },
+    "/family/{cardNumber}": {
+      "patch": {
+        "tags": [
+          "charity"
+        ],
+        "summary": "Edit family.",
+        "description": "Edit family.",
+        "operationId": "FamiliesController:edit",
+        "parameters": [
+          {
+            "name": "cardNumber",
+            "in": "path",
+            "description": "Family card number.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "family",
+            "in": "body",
+            "description": "Family Payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FamilyEditPayload"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content",
+            "schema": {
+              "$ref": "#/definitions/EmptyData"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "charity"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 400, 401, 403, 406])); }"
+        }
+      }
+    },
+    "/family": {
+      "post": {
+        "tags": [
+          "charity"
+        ],
+        "summary": "Add new family.",
+        "description": "Add new family.",
+        "operationId": "FamiliesController:create",
+        "parameters": [
+          {
+            "name": "family",
+            "in": "body",
+            "description": "Family Payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FamilyPayload"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "schema": {
+              "$ref": "#/definitions/EmptyData"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          },
+          "409": {
+            "description": "The request could not be completed due to a conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorData"
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "charity"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 400, 401, 403, 406, 409])); }"
+        }
+      }
+    },
+    "/family/payInStore": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Family pay in store.",
+        "description": "Family pay in store.",
+        "operationId": "FamiliesController:payInStore",
+        "parameters": [
+          {
+            "name": "family",
+            "in": "body",
+            "description": "Family Payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransactionPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment detail.",
+            "schema": {
+              "$ref": "#/definitions/PaymentDto"
+            }
+          },
+          "400": {
+            "description": "Bad data input."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "406": {
+            "description": "Supported types (application/vnd.decent.ht.v1+json)."
+          },
+          "409": {
+            "description": "Input data conflict."
+          },
+          "422": {
+            "description": "Inconsistent entity problem."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-ht-gateway-integration": {
+          "security": {
+            "scopes": [
+              "store"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "beforeScript": "function(ctx, request) { ctx.mock.set(true, _.sample([200, 400, 401, 403, 406, 409, 422])); }"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "description": "Bearer/JWT security header",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "x-ht-gateway-security-scopes": [
+        "charity",
+        "store",
+        "self-user"
+      ]
+    }
+  },
+  "definitions": {
+    "EmptyData": {
+      "type": "object"
+    },
+    "ErrorData": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorModel"
+        },
+        "data": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "SigninUserPayload": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "password": {
+          "type": "string",
+          "format": "password"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "password": "password",
+        "email": "email@email.com"
+      }
+    },
+    "AuthDto": {
+      "type": "object",
+      "required": [
+        "token"
+      ],
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "token": "abc"
+      }
+    },
+    "UserEditPayload": {
+      "type": "object",
+      "required": [
+        "password"
+      ],
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "oldPassword": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "password": "1111",
+        "oldPassword": "1111"
+      }
+    },
+    "FamilyEditPayload": {
+      "type": "object",
+      "required": [
+        "pin"
+      ],
+      "properties": {
+        "pin": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "pin": "1111"
+      }
+    },
+    "FamilyPayload": {
+      "type": "object",
+      "required": [
+        "cardNumber",
+        "pin"
+      ],
+      "properties": {
+        "cardNumber": {
+          "type": "string"
+        },
+        "pin": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "cardNumber": "123456",
+        "pin": "1111"
+      }
+    },
+    "TransactionPayload": {
+      "type": "object",
+      "required": [
+        "cardNumber",
+        "pin",
+        "amount"
+      ],
+      "properties": {
+        "cardNumber": {
+          "type": "string"
+        },
+        "pin": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "cardNumber": "123456",
+        "pin": "1111",
+        "amount": "13.12"
+      }
+    },
+    "PaymentDto": {
+      "type": "object",
+      "required": [
+        "senderAddress",
+        "receiverAddress",
+        "remainingBalance"
+      ],
+      "properties": {
+        "senderAddress": {
+          "type": "string"
+        },
+        "receiverAddress": {
+          "type": "string"
+        },
+        "remainingBalance": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "senderAddress": "dw-account1",
+        "receiverAddress": "dw-account2",
+        "remainingBalance": "113.22"
+      }
+    },
+    "TransactionDto": {
+      "type": "object",
+      "required": [
+        "timestamp",
+        "account",
+        "accountChainName",
+        "amount",
+        "direction",
+        "found"
+      ],
+      "properties": {
+        "timestamp": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "accountChainName": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "found": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "timestamp": "1289210192",
+        "account": "123456789",
+        "accountChainName": "dw-account",
+        "amount": "19.52",
+        "direction": "in",
+        "found": true
+      }
+    },
+    "TransactionListDto": {
+      "type": "object",
+      "required": [
+        "balance",
+        "tokensReceived",
+        "tokensSent",
+        "transactions",
+        "cursors"
+      ],
+      "properties": {
+        "balance": {
+          "type": "string"
+        },
+        "tokensReceived": {
+          "type": "string"
+        },
+        "tokensSent": {
+          "type": "string"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionDto"
+          }
+        },
+        "cursors": {
+          "type": "object",
+          "properties": {
+            "next": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "example": {
+        "balance": "123422.12",
+        "tokensReceived": "19122.54",
+        "tokensSent": "23411.10",
+        "transactions": [
+          {
+            "timestamp": "1542721018",
+            "account": "123456789",
+            "accountChainName": "dw-account1",
+            "amount": "19.52"
+          },
+          {
+            "timestamp": "1542721017",
+            "account": "223456789",
+            "accountChainName": "dw-account2",
+            "amount": "1900.52"
+          },
+          {
+            "timestamp": "1542721016",
+            "account": "323456789",
+            "accountChainName": "dw-account3",
+            "amount": "190.52"
+          }
+        ]
+      }
+    },
+    "ChainAccountListDto": {
+      "type": "object",
+      "required": [
+        "charityTokens",
+        "familyTokens",
+        "storeTokens",
+        "accounts"
+      ],
+      "properties": {
+        "charityTokens": {
+          "type": "string"
+        },
+        "familyTokens": {
+          "type": "string"
+        },
+        "storeTokens": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChainAccountDto"
+          }
+        }
+      },
+      "example": {
+        "charityTokens": "123422.12",
+        "familyTokens": "19122.54",
+        "storeTokens": "23411.10",
+        "accounts": [
+          {
+            "account": "123456789",
+            "amount": "dw-account1",
+            "balance": "15.21"
+          },
+          {
+            "account": "223456789",
+            "amount": "dw-account2",
+            "balance": "150.21"
+          },
+          {
+            "account": "323456789",
+            "amount": "dw-account3",
+            "balance": "1500.21"
+          }
+        ]
+      }
+    },
+    "ChainAccountDto": {
+      "type": "object",
+      "required": [
+        "account",
+        "chainName",
+        "balance"
+      ],
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "chainName": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "account": "123456789",
+        "amount": "dw-account",
+        "balance": "15.21"
+      }
+    },
+    "BalanceDto": {
+      "type": "object",
+      "required": [
+        "amount",
+        "chainName"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "chainName": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "amount": "15.21",
+        "chainName": "h4t-account"
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "required": [
+        "chainId",
+        "chainName",
+        "email",
+        "name",
+        "roles"
+      ],
+      "properties": {
+        "chainId": {
+          "type": "string"
+        },
+        "chainName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": {
+        "chainId": "1.2.45",
+        "chainName": "dw-account",
+        "email": "account@ht.at",
+        "name": "Charity 1",
+        "roles": [
+          "charity"
+        ]
+      }
+    },
+    "ErrorModel": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "number"
+        },
+        "data": {
+          "type": "object",
+          "properties": {}
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

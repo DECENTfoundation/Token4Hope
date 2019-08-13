@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+}
+
+.storybook {
+
+    &__wrapper {
+        padding: 50px;
+
+        &--horizontal {
+            padding-right: 50px;
+            padding-bottom: 20px;
+        }
+    }
+
+    &__divider {
+        padding: 10px 0;
+    }
+
+    &__header {
+        margin-top: 50px;
+        padding: 50px;
+        background-color: #fbc605;
+        height: 50px;
+        width: auto;
+        position: relative;
+
+        &--success {
+            background-color: #8cd2be;
+        }
+        &--error {
+            background-color: #fcebe6;
+        }
+    }
+}

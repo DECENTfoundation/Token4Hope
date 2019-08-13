@@ -1,0 +1,9 @@
+@import "../../../../assets/styles/variables";
+
+.label {
+    color: $body-primary;
+
+    &__asterisks {
+        color: $highlight;
+    }
+}

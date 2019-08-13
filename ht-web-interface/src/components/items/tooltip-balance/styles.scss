@@ -1,0 +1,10 @@
+@import "../../../../assets/styles/variables";
+
+.tooltip-balance {
+  margin: 32px 0;
+  min-width: 200px;
+
+  @media screen and (max-width: $mobile-resolution) {
+    margin: 0 0 32px 0 !important;
+  }
+}

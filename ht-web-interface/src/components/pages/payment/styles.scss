@@ -1,0 +1,12 @@
+@import "../../../../assets/styles/variables";
+
+.payment {
+  &__amount {
+    width: 350px;
+    max-width: 90%;
+
+      &--currency {
+          margin-left: 4px;
+      }
+  }
+}

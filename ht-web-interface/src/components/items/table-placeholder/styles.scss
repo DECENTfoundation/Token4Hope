@@ -1,0 +1,11 @@
+@import "../../../../assets/styles/animations";
+
+.table-placeholder {
+    &__row {
+        height: 6px;
+        width: 140px;
+        border-radius: 3px;
+        margin: 10px 0;
+        animation: pulse 1s infinite ease-in-out;
+    }
+}

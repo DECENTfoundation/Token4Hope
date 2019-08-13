@@ -1,0 +1,112 @@
+@import "../../../../assets/styles/main";
+
+.landing {
+  max-height: 100vh;
+
+  &__wrapper {
+    padding-top: 140px;
+    height: 60vh;
+    width: 100%;
+    position: relative;
+    background-color: $header-bg;
+    overflow: hidden;
+    z-index: -1;
+
+    &__container {
+      width: 80%;
+      max-width: 1200px;
+      min-width: 650px;
+      min-height: 170px;
+      align-self: center;
+      height: calc(40vh - 140px);
+
+      &__main {
+        &__title {
+          max-width: 620px;
+          margin-bottom: 20px;
+        }
+
+        &__text {
+          max-width: 560px;
+        }
+      }
+
+      &__info {
+        max-width: 380px;
+        &__title {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    @media screen and (max-width: $tablet-resolution) {
+      padding-top: 0;
+      &__container {
+        height: calc(40vh - 107px);
+        min-width: 250px;
+        padding: 50px 0;
+        width: 90%;
+      }
+    }
+    &__image {
+      background: url(./images/landing_illustration.png) no-repeat 0px 100%;
+      background-size: contain;
+      position: absolute;
+      min-width: 300px;
+      min-height: 360px;
+      max-height: 550px;
+      height: 60vh;
+      width: calc(40vw + 100px);
+      bottom: 0;
+      right: 0;
+      z-index: 0;
+
+      @media screen and (max-width: $mobile-resolution) {
+        width: 40%;
+        bottom: 0;
+        right: 0;
+        background-position-y: 270px;
+      }
+    }
+    & span {
+      z-index: 20;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $mobile-resolution) {
+    max-height: min-content;
+
+    &__wrapper {
+      &__container {
+        max-width: 90%;
+        height: min-content;
+
+        &__main {
+          text-align: center;
+          align-items: center !important;
+
+        }
+
+        &__info {
+          &__cta {
+            width: 100%;
+          }
+          &__text {
+            margin-bottom: 30px;
+          }
+        }
+      }
+      &__image {
+        width: 40%;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+}

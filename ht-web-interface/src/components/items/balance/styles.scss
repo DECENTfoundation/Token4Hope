@@ -1,0 +1,24 @@
+@import "../../../../assets/styles/variables";
+
+.balance {
+    &__value {
+        position: relative;
+
+        &--primary {
+            top: -18px;
+        }
+        &__loader {
+            position: relative;
+            top: 18px;
+        }
+    }
+    &__currency {
+        margin-left: 12px;
+        position: relative;
+
+        &--secondary {
+            top: 8px;
+            color: $disabled;
+        }
+    }
+}

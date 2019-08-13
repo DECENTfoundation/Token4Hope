@@ -1,0 +1,39 @@
+@import "../../../../assets/styles/variables";
+
+.status-message {
+    max-width: 400px;
+    align-self: center;
+    justify-content: center !important;
+    width: 100%;
+    text-align: left;
+
+    &--vertical {
+        text-align: center;
+        align-items: center;
+        flex-direction: column !important;
+    }
+
+    &__title {
+        margin: 15px 0;
+        max-width: 350px;
+        color: $secondary !important;
+
+        &--error {
+            color: $highlight !important;
+        }
+    }
+
+    &__subtitle {
+        max-width: 340px;
+        text-align: center;
+        color: $body-primary !important;
+        a {
+            text-decoration: underline !important;
+            color: $body-primary;
+        }
+    }
+
+    &__icon {
+        margin: 0 20px;
+    }
+}

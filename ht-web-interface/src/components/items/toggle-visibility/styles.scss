@@ -1,0 +1,28 @@
+@import "../../../../assets/styles/variables";
+
+.toggle-visibility {
+    color: $primary;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+
+    &__icon {
+        transition: all 200ms ease-in-out;
+        fill: $primary;
+    }
+
+    &--active {
+        color: black;
+
+        .toggle-visibility__icon {
+            fill: black;
+        }
+    }
+
+    &:hover {
+        color: #ac304f;
+
+        .toggle-visibility__icon {
+            fill: #ac304f;
+        }
+    }
+}

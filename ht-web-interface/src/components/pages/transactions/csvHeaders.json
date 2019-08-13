@@ -1,0 +1,6 @@
+[
+  { "label": "Timestamp", "key": "timestamp" },
+  { "label": "Account Name", "key": "accountChainName" },
+  { "label": "Account ID", "key": "account" },
+  { "label": "Amount", "key": "amount" }
+]

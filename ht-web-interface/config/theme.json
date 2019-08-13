@@ -1,0 +1,137 @@
+{
+    "palette": {
+        "primary": {
+            "contrastText": "#fff",
+            "dark": "#1753EF",
+            "light": "#1753EF",
+            "main": "#1753EF"
+        },
+        "secondary": {
+            "contrastText": "#fff",
+            "dark": "#fd6a08",
+            "light": "#fddc02",
+            "main": "#5203f7"
+        }
+    },
+    "overrides": {
+        "MuiButton": {
+            "root": {
+                "minWidth": 190,
+                "boxSizing": "border-box",
+                "textTransform": "none !important",
+                "padding": "13px 25px",
+                "borderRadius": 6
+            },
+            "textPrimary": {
+                "&:hover": {
+                    "backgroundColor": "#D15400 !important"
+                }
+            },
+            "textSecondary": {
+                "&:hover": {
+                    "backgroundColor": "#191A36 !important"
+                }
+            },
+            "flatPrimary": {
+                "color": "white !important",
+                "backgroundColor": "#fd6a08"
+            },
+            "raisedPrimary": {
+                "color": "white !important",
+                "background": "#fd6a08 !important"
+            },
+            "label": {
+                "textTransform": "uppercase",
+                "fontSize": 14,
+                "padding": 0
+            },
+            "flatSecondary": {
+                "color": "white !important",
+                "backgroundColor": "#191A36"
+            },
+            "sizeSmall": {
+                "padding": "10px 15px"
+            },
+            "disabled": {
+                "background": "#d2dbed !important",
+                "cursor": "not-allowed !important",
+                "pointerEvents": "unset !important",
+                "&:hover": {
+                    "background": "#d2dbed !important",
+                    "cursor": "not-allowed !important"
+                }
+            }
+        },
+        "MuiIconButton": {
+            "disabled": {
+                "cursor": "not-allowed !important",
+                "pointerEvents": "unset !important",
+                "&:hover": {
+                    "cursor": "not-allowed !important"
+                }
+            }
+        },
+        "MuiFormControl": {
+            "marginNormal": {
+                "marginBottom": "14px"
+            }
+        },
+        "MuiInput": {
+            "input": {
+                "padding": "6px 0 7px 6px"
+            },
+            "underline": {
+                "borderBottom": "1px solid #1753EF",
+                "borderBottomLeftRadius": "4px",
+                "borderBottomRightRadius": "4px"
+            }
+        },
+        "MuiFormLabel": {
+            "root": {
+                "paddingLeft": "10px",
+                "fontSize": "13px"
+            }
+        },
+        "MuiInputLabel": {
+            "formControl": {
+                "transform": "translate(0, 20px) scale(1)"
+            }
+        },
+        "MuiTableCell": {
+            "head": {
+                "fontSize": 16,
+                "whiteSpace": "nowrap",
+                "padding": "4px 30px 13px 0",
+                "color": "#002B97"
+            },
+            "body": {
+                "fontSize": 16,
+                "whiteSpace": "nowrap",
+                "padding": "18px 30px 10px 0",
+                "borderBottom": "none",
+                "color": "#55648B"
+            }
+        },
+        "MuiList": {
+            "padding": {
+                "paddingTop": 0,
+                "paddingBottom": 0
+            }
+        },
+        "MuiPopover": {
+            "paper": {
+                "borderTop": "2px solid #D2DBED",
+                "borderRight": "2px solid #D2DBED",
+                "borderLeft": "2px solid #D2DBED",
+                "borderRadius": 6
+            }
+        },
+        "MuiMenuItem": {
+            "root": {
+                "borderBottom": "2px solid #D2DBED",
+                "fontSize": 14,
+                "color": "#55648B"
+            }
+        }
+    }
+}

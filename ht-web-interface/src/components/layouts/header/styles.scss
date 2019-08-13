@@ -1,0 +1,133 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.header {
+    background: $header-bg;
+    width: 100%;
+
+    &--success {
+        background: $success-light;
+    }
+
+    &--error {
+        background: $highlight-light;
+    }
+
+    &__wrapper {
+        height: 130px;
+        box-sizing: border-box;
+        padding: 0 20px;
+        position: relative;
+        align-self: center;
+        @include responsiveFrame();
+
+        &--offset {
+            margin-bottom: 15px;
+        }
+
+        &__title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            padding: 0 50px;
+            text-align: center;
+            pointer-events: none;
+
+            &--large {
+                display: none !important;
+            }
+
+            &--error {
+              color: $highlight;
+            }
+        }
+
+        &__extended {
+            width: 96%;
+            margin: 0 3%;
+            height: 140px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: -20px;
+            @include responsiveFrame();
+
+            &--offset {
+                height: 60px;
+                margin: 40px 0 50px;
+            }
+
+            &__children {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &__back-button {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto 0;
+                height: 44px;
+                justify-self: start;
+                background-color: black;
+                border-color: transparent;
+
+                * {
+                    fill: white;
+                }
+            }
+        }
+
+        &__offset {
+            height: 30px;
+        }
+
+        &__container {
+            align-self: center;
+        }
+
+        &__back-chevron {
+            height: 22px;
+            display: none;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: $tablet-resolution) {
+            .logo {
+                height: 50px;
+            }
+        }
+
+        @media screen and (max-width: $mobile-resolution) {
+            &__back-button, &__extended {
+                display: none;
+                &--offset {
+                    display: block;
+                    top: -60px;
+                }
+            }
+            &__back-chevron {
+                display: block;
+            }
+            .logo {
+                display: none;
+
+                &--show {
+                    display: block;
+                    height: 40px;
+                }
+            }
+            & {
+                height: 107px;
+            }
+            &__title {
+                display: block !important;
+
+            }
+        }
+    }
+}

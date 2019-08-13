@@ -1,0 +1,1 @@
+NODE_ENV=test mocha --timeout 120000 --exit -r dotenv/config -r ts-node/register tests/**/*.test.ts

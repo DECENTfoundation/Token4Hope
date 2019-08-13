@@ -1,0 +1,12 @@
+.logout-button {
+    padding: 10px 16px;
+    cursor: pointer;
+    background: black;
+    border-radius: 4px;
+
+    &__wrapper {
+        &__icon {
+            margin-left: 8px;
+        }
+    }
+}

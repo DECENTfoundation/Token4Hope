@@ -1,0 +1,42 @@
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/variables";
+
+.fi-wrapper {
+
+    &__input {
+        @include font(32px, 37px, $fontface-arial);
+        border-radius: 4px;
+        border: 1px solid $border;
+        outline-color: $primary-light;
+        padding: 13px 5px;
+        display: flex;
+        margin: 0 6px;
+        width: 50px;
+        text-align: center;
+        font-weight: bold;
+
+        @media screen and (max-width: $mobile-resolution) {
+            @include responsiveFont(25px, 20px, $mobile-resolution);
+            width: 30px;
+            padding: 7px 5px;
+        }
+        &[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none; 
+            margin: 0;
+        }
+
+        &:focus {
+            border: 1px solid $primary;
+        }
+
+        &--invalid {
+            border-color: $highlight;
+            background-color: $highlight-light;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@mixin margin {
+    @for $i from 1 through 8 {
+        .mt-#{$i * 8} {
+            margin-top: $i * 8px;
+        }
+
+        .mb-#{$i * 8} {
+            margin-bottom: $i * 8px;
+        }
+
+        .mr-#{$i * 8} {
+            margin-right: $i * 8px;
+        }
+
+        .ml-#{$i * 8} {
+            margin-left: $i * 8px;
+        }
+    }
+}
+
+@include margin();

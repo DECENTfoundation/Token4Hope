@@ -1,0 +1,15 @@
+@import "../../../../assets/styles/variables";
+
+.store {
+
+    &__subheader {
+
+        &__title {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__placeholder {
+        width: 400px;
+    }
+}

@@ -1,0 +1,50 @@
+@import "../../../../assets/styles/variables";
+
+.action-container {
+    padding: 0 !important;
+    z-index: 30;
+
+    &__full-width {
+        width: 100%;
+    }
+
+    &--header {
+        margin-top: 0px;
+    }
+
+    &__header-item {
+        padding: 17px 0;
+        border-bottom: 1px solid $border-light;
+        height: 36px;
+        box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+        width: 100%;
+    }
+
+    &__wrapper {
+        padding: 40px 32px;
+        box-sizing: border-box;
+        width: 100%;
+
+        @media screen and (max-width: $mobile-resolution) {
+            width: 85%;
+            padding: 40px 0;
+        }
+    }
+
+    &__actions {
+        border-top: 1px solid $border-light;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+
+        @media screen and (max-width: $mobile-resolution) {
+            width: 93%;
+            flex-direction: column-reverse !important;
+
+            .button {
+                width: 100% !important;
+                margin-top: 10px;
+            }
+        }
+    }
+}

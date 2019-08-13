@@ -1,0 +1,18 @@
+@import "../../../../assets/styles/variables";
+
+.chevron {
+    &--primary {
+        fill: white;
+        &--disabled {
+            fill: white;
+        }
+    }
+
+    &--secondary {
+        fill: $primary;
+
+        &--disabled {
+            fill: $disabled;
+        }
+    }
+}

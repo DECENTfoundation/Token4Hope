@@ -1,0 +1,53 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/typography";
+
+.table-wrapper {
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    &__table {
+        border-spacing: 0;
+
+        &__head {
+            text-align: left;
+            
+            &__cell {
+                @include font(12px, 16px, $fontface-arial);
+                border-bottom: 1px solid $border-disabled;
+                font-weight: normal;
+                padding: $table-cell-padding;
+            }
+        }
+
+        &__body {
+            @extend .body2;
+            color: $tertiary;
+        }
+
+        &__row {
+            //
+        }
+
+        &__cell {
+            padding: 12px 25px;
+        }
+
+        &--striped {
+            .table-wrapper {
+                &__table {
+                    &__row:nth-child(even) {
+                        background: $table-row-odd-background;
+                    }
+                }
+            }
+        }
+        &--full-width {
+            width: 100%;
+        }
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+}

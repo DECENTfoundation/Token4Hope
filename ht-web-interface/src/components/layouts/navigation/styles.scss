@@ -1,0 +1,85 @@
+@import "../../../../assets/styles/typography";
+@import "../../../../assets/styles/variables";
+
+.nav {
+    &__link {
+        @extend .h6;
+        text-decoration: none;
+        color: #000 !important;
+        opacity: .6;
+        padding: 0 15px;
+
+        &--phone {
+            padding: 12px 0;
+            &:active {
+                text-decoration: none !important;
+            }
+        }
+
+        &--button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            background: #000;
+            margin-left: 25px;
+        }
+    }
+
+    &__icon {
+        display: none !important;
+        &__hamburger {
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (max-width: $tablet-resolution) {
+        &__icon {
+            display: flex !important;
+        }
+        &__user-info {
+            display: none !important;
+        }
+    }
+
+    @media screen and (max-width: $mobile-resolution) {
+        width: 100%;
+
+        &__link {
+            display: none;
+        }
+    }
+
+    &--open {
+        z-index: $menu-open;
+        position: absolute;
+        background: white;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        box-sizing: border-box;
+
+        &__top {
+            margin-bottom: 40px;
+
+            &__login {
+                border-radius: 4px;
+                padding: 8px 16px;
+                background: black;
+                &:active {
+                    text-decoration: none !important;
+                }
+            }
+        }
+
+        &__user {
+            margin: 0;
+            * {
+                max-width: 250px;
+            }
+        }
+
+        &__button {
+            margin: 55px 0;
+        }
+    }
+}

@@ -1,0 +1,88 @@
+@import "./variables";
+@import "./mixins";
+
+@font-face {
+    src: url("../fonts/Quattrocento-Regular.ttf");
+    font-family: $fontface-qc-regular;
+}
+
+@font-face {
+    src: url("../fonts/Quattrocento-Bold.ttf");
+    font-family: $fontface-qc-bold;
+}
+
+@font-face {
+    src: url("../fonts/arial.ttf");
+    font-family: $fontface-arial;
+}
+
+body {
+    @extend .body;
+    -webkit-font-smoothing: antialiased;
+}
+
+a, a:link, a:visited {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.body {
+    @include font(16px, 24px, $fontface-arial, 0.5px);
+    @include responsiveFont(14px, 20px, $tablet-resolution);
+}
+
+.body2 {
+    @include font(14px, 20px, $fontface-arial, 0.25px);
+    @include responsiveFont(12px, 16px, $tablet-resolution);
+}
+
+.caption {
+    @include font(12px, 20px, $fontface-arial);
+    @include responsiveFont(10px, 14px, $tablet-resolution);
+}
+
+.label {
+    @include font(14px, 20px, $fontface-arial, 0.25px);
+    margin-bottom: 5px;
+}
+
+.error {
+    @include font(14px, 20px, $fontface-arial, 0.25px);
+    margin-top: 15px;
+    color: $highlight;
+}
+
+h1, .h1 {
+    @include font(80px, 104px, $fontface-qc-bold);
+    @include responsiveFont(70px, 90px, $tablet-resolution);
+    @include responsiveFont(60px, 80px, $mobile-resolution);
+}
+
+h2, .h2 {
+    @include font(52px, 64px, $fontface-qc-bold);
+    @include responsiveFont(40px, 50px, $tablet-resolution);
+    @include responsiveFont(28px, 38px, $mobile-resolution);
+}
+
+h3, .h3 {
+    @include font(32px, 42px, $fontface-qc-bold);
+    @include responsiveFont(26px, 35px, $tablet-resolution);
+}
+
+h4, .h4 {
+    @include font(24px, 28px, $fontface-qc-bold);
+    @include responsiveFont(20px, 26px, $tablet-resolution);
+}
+
+h5, .h5 {
+    @include font(24px, 36px, $fontface-arial, 0.6px);
+    @include responsiveFont(20px, 24px, $tablet-resolution);
+}
+
+h6, .h6 {
+    @include font(18px, 26px, $fontface-arial, 0.5px);
+    @include responsiveFont(16px, 22px, $tablet-resolution);
+}

@@ -1,0 +1,1 @@
+tslint --project tsconfig-tests.json --config tslint.json
